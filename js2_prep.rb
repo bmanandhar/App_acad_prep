@@ -90,3 +90,68 @@ def order_by_num_vowels(str)
 end
 order_by_num_vowels("Miracle bird or golden handiwork")
 # => ["bird", "or", "golden", "Miracle", "handiwork"]
+
+# reduce
+[1, 2].reduce(:+) #=> 3
+[1, 2].reduce(:*) #=> 2
+
+[1, 2, 3].reduce(:+) #=> 6
+[1, 2, 3].reduce(:*) #=> 6
+
+[1.0, 2.0, 3.0].reduce(:/) #=> 0.16666666666666666
+[3.0, 2.0, 1.0].reduce(:/) #=> 1.5
+
+
+def my_sum(arr)
+  accumulator = arr.first # store first element as accumulator
+
+  arr.each_index do |idx|
+    next if idx == 0 # skip element: it's already the accumulator
+    accumulator += arr[idx] # increment accumulator by current element
+  end
+
+  accumulator
+end
+
+# With a Block, Without an Argument
+[1, 2, 3].reduce(:+)
+[1, 2, 3].reduce {|acc, el| acc + el}
+
+def sum_first_and_odds(arr)
+  arr.reduce do |acc, el|
+    if el.odd?
+      acc + el
+    else
+      # this else statement is necessary because otherwise the return value of
+      # the block would be nil if the element is even. Thus the interpreter
+      # would reassign acc to nil.
+      acc
+    end
+  end
+end
+sum_first_and_odds([1, 2, 4, 5]) #=> 1+5=> 6
+
+# OLD SOLUTION
+def longest_word(str)
+  words = str.split
+  longest_word = ""
+
+  words.each do |word|
+    if word.length > longest_word.length
+      longest_word = word
+    end
+  end
+  longest_word
+end
+
+# REDUCED EXCELLENCE
+def longest_word(str)
+  str.split.reduce do |longest, word|
+    if word.length > longest.length
+      word
+    else
+      longest
+    end
+  end
+end
+p longest_word("this is a test string")
