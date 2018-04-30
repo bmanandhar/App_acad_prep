@@ -128,6 +128,7 @@ def sum_first_and_odds(arr)
       acc
     end
   end
+
 end
 sum_first_and_odds([1, 2, 4, 5]) #=> 1+5=> 6
 
@@ -141,6 +142,7 @@ def longest_word(str)
       longest_word = word
     end
   end
+
   longest_word
 end
 
@@ -153,5 +155,80 @@ def longest_word(str)
       longest
     end
   end
+
 end
 p longest_word("this is a test string")
+
+# With a Block, With an Initial Accumulator
+def e_words(str)
+  words = str.split
+  count = 0
+
+  words.each do |word|
+    count += 1 if word[-1] == "e"
+  end
+
+  count
+end
+
+# same thing using 'reduce' method
+def e_words(str)
+  str.split.reduce(0) do |count, word|
+    if word[-1] == "e"
+      count + 1
+    else
+      count
+    end
+  end
+
+end
+# this function func will return 3.
+p e_words("eric, take the circle.")
+
+# OLD SOLUTION
+def boolean_to_binary(arr)
+  binary = ""
+
+  arr.each do |boolean|
+    if boolean
+      binary += "1"
+    else
+      binary += "0"
+    end
+  end
+
+  binary
+end
+
+# REDUCE EXCELLENCE
+def boolean_to_binary(arr)
+  arr.reduce("") do |str, boolean|
+    if boolean
+      str + "1"
+    else
+      str + "0"
+    end
+  end
+end
+
+# OLD SOLUTION
+def factors(num)
+  factors = []
+  (1..num).each do |i|
+    if num % i == 0
+      factors << i
+    end
+  end
+  factors
+end
+
+# REDUCED EXCELLENCE
+def factors(arr)
+  (1..num).reduce([]) do |factors, i|
+    if num % i == 0
+      factors << i
+    else
+      factors
+    end
+  end
+end
