@@ -68,6 +68,24 @@ def unique_in_order(string)
   end
 end
 
+
+# using "while" loop
+
+def unique_in_order(string)
+  arr =[string[0]]
+
+  i = 1
+  while i < string.length
+    if string[i] != string[i-1]
+      arr << string[i]
+     end
+
+    i += 1
+  end
+
+  arr
+end
+
 puts "-------Unique in Order-------"
 puts unique_in_order('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
 puts unique_in_order('BBBAAAACCDAABBB') == ['B', 'A', 'C', 'D', 'A', 'B']
