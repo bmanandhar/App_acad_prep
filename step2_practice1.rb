@@ -90,6 +90,23 @@ def substrings(string)
   subs.sort
 end
 
+#using "while" loop
+
+def substrings(string)
+  subs = []
+  i = 0
+  while i < string.length
+    j = i
+    while j < string.length
+      subs << string[i..j]
+      j += 1
+    end
+    i += 1
+  end
+
+  subs.sort
+end
+
 puts "-------Substrings-------"
 puts substrings("") == []
 puts substrings("123") == ["1", "12", "123", "2", "23", "3"]
