@@ -6,6 +6,8 @@ Define a method, #compound_words?(word_list, target), that accepts 2 arguments:
 an array of words and a target, compound word. Check to see if any two words
 in the list can be combined to make the compound word. Don't double-use words.
 =end
+
+#Method -1
 def compound_words?(array, target)
 #
 # your code here
@@ -26,10 +28,23 @@ def compound_words?(array, target)
   false
 end
 
-####
+#Method -2
 def compound_words?(array, target)
- #
- # your code here
+
+  array.each_with_index do |word1, idx1|
+    subarray = array[0...idx1] + array[idx1+1..-1]
+    subarray.each do |word2|
+      return true if word1 + word2 == target # or target == word1 + word2
+      end
+    end
+  false
+  end
+
+####
+#Method -3
+def compound_words?(array, target)
+#
+# your code here
 # using 'each' loop
   array.each_index do |i|
     subarray = array[0...i] + array[i+1..-1]
