@@ -22,7 +22,7 @@ puts vowel_censor("supercalifragilisticexpialidocious") == "sXpXrcXlXfrXgXlXstXc
 that accepts an integer as an argument and returns
 # the largest factor of that integer
 =end
-
+# method-1
 def largest_factor(n)
 
   result = nil
@@ -33,6 +33,12 @@ def largest_factor(n)
   end
 
   result
+end
+
+#method-2
+def largest_factor(n)
+  (n/2).downto(2) {|num| return num if n % num == 0}
+  1
 end
 
 puts "---------Muni Routes----------"
