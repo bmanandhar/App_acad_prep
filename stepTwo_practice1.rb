@@ -25,7 +25,7 @@ end
 def panoramic_pairs(landmarks)
   pano_pairs = []
 
-  landmarks.each_with_index do |pan, i|
+  landmarks.each_index do |i|
     land_pair = []
     land_pair << landmarks[i] << landmarks[i+1]
     land_pair[1] = landmarks[0] if land_pair[1] == nil
