@@ -17,26 +17,15 @@ end
 # Define a method that accepts a string of lower case words (no punctuation) and returns an array of letters that occur more than once.
 def non_unique_letters(string)
 
-  result = []
-  temp = [] # array with non-repeated elements (uniq) for counting
+  result = [] # empty accumulator
 
-  # build an unique array as key
-  i = 0
-  while i < string.length
-    temp << string[i] if temp.include?(string[i]) == false
-    i += 1
-  end
+  string.split("").uniq.each do |uni| # finding character present in the string
+    each_char = 0
 
-  i = 0
-  while i < temp.length
-    j, sum = 0, 0
-
-    while j < string.length
-      sum += 1 if temp[i] == string[j]
-      j += 1
+    string.split("").each do |ltr| # iterating array of string
+      each_char += 1 if ltr == uni
     end
-      result << temp[i] if sum > 1
-    i += 1
+    result << uni if each_char > 1
   end
 
   result
@@ -196,3 +185,15 @@ def repeated_number_ranges(arr)
 
   result
 end
+
+
+p "abcd".chars.count
+
+
+
+
+
+
+
+
+#
