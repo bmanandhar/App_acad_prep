@@ -44,7 +44,7 @@ def array_sum_with_index(arr)
 
   result = []
   arr.each_index {|i|  result << arr[i]*i}
-  result 
+  result
 end
 
 # MEDIUM
