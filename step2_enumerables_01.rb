@@ -131,9 +131,7 @@ def ordered_vowel_word?(word)
 
   vowels = "aeiou"
   arr = []
-  x = word.split("")
-
-  x.each do |c|
+  word.split("").each do |c|
     arr << c if vowels.include?(c.downcase)
     end
 
