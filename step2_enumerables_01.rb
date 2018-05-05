@@ -50,10 +50,27 @@ end
 # MEDIUM
 
 # Given an array of bids and an actual retail price, return the bid closest to the actual retail price without going over that price. Assume there is always at least one bid below the retail price.
+#method-1 'each' method
+def price_is_right(bids, actual_retail_price)
+  diff = actual_retail_price
+  best_bid = nil
+  bids.each do |bid|
+
+    highest = actual_retail_price - bid
+
+    if highest > 0 && highest <= diff
+      diff = highest
+      best_bid = bid
+    end
+  end
+
+  best_bid
+end
+#method-2 while-loop
 def price_is_right(bids, actual_retail_price)
 
-  bid = bids[0]
-  diff1 = actual_retail_price - bids[0]
+  bid = nil
+  diff1 = actual_retail_price
 
   i = 0
   while i < bids.length
@@ -69,6 +86,9 @@ def price_is_right(bids, actual_retail_price)
 
   bid
 end
+
+
+
 
 # Given an array of numbers, return an array of those numbers that have at least n factors (including 1 and the number itself as factors).
 # at_least_n_factors([1, 3, 10, 16], 5) => [16] because 16 has five factors (1, 2, 4, 8, 16) and the others have fewer than five factors.
