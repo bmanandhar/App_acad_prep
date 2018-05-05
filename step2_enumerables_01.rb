@@ -38,7 +38,14 @@ def array_sum_with_index(arr)
 
   sum
 end
+#Method-2 using enumerable
 
+def array_sum_with_index(arr)
+
+  result = []
+  arr.each_index {|i|  result << arr[i]*i}
+  result 
+end
 
 # MEDIUM
 
@@ -132,7 +139,7 @@ def products_except_me(numbers)
   numbers.each_index do |i|
     subarr = numbers[0...i] + numbers[i+1..-1]
     result << array_product(subarr)
-    
+
     end
   result
 end
