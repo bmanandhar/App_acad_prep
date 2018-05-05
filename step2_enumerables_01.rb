@@ -156,18 +156,8 @@ def products_except_me(numbers)
   result = []
   numbers.each_index do |i|
     subarr = numbers[0...i] + numbers[i+1..-1]
-    result << array_product(subarr)
+    result << subarr.reduce(:*)
 
     end
   result
-end
-
-def array_product(array)
-
-  prod = 1
-  array.each do |n|
-    prod *= n
-    end
-
-  prod
 end
