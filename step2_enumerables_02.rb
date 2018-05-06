@@ -93,7 +93,7 @@ end
 def not_repeat_year?(year)
 
   temp = year.split("").uniq
-  return true if temp.length == year.length
+  temp.length == year.length
 
 end
 
