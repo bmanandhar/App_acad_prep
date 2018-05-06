@@ -160,7 +160,7 @@ def c_distance(word)
   word.split("").each_with_index do |ch, i|
     c_idx = i if ch == "c"
   end
-  
+
   c_idx - word.length
 end
 
@@ -170,29 +170,45 @@ end
 # and end indices of whenever a number appears multiple times in a row.
 # repeated_number_ranges([1, 1, 2]) => [[0, 1]]
 # repeated_number_ranges([1, 2, 3, 3, 4, 4, 4]) => [[2, 3], [4, 6]]
+
 def repeated_number_ranges(arr)
 
   result = []
-  key = arr.uniq
-
-  i = 0
-  while i < key.length
-    check, j = [], 0
-    while j < arr.length
-      if key[i] == arr[j]
-        check << j
-      end
-      j += 1
+  arr.uniq.each do |x|
+    temp = []
+    arr.each_with_index do |y, i|
+      temp << i if x == y
     end
-    if check.length > 1
-      check = [check.first, check.last]
-      result << check
-    end
-    i += 1
+    result << [temp[0], temp[-1]] if temp.length > 1
   end
 
   result
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 p "abcd".chars.count
