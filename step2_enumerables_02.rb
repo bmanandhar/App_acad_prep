@@ -127,8 +127,6 @@ def no_repeats?(song_name, songs)
  true
 end
 
-
-
 # Define a method that, given a string of words, returns the word that has the letter "c"
 # closest to the end of it. If there's a tie, return the earlier word. Ignore punctuation.
 # If there's no "c", return an empty string.
@@ -159,12 +157,10 @@ end
 #helper
 def c_distance(word)
   c_idx = nil
-  i = 0
-  while i < word.length
-    c_idx = i if word[i] == 'c'
-    i += 1
+  word.split("").each_with_index do |ch, i|
+    c_idx = i if ch == "c"
   end
-
+  
   c_idx - word.length
 end
 
