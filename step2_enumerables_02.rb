@@ -65,18 +65,15 @@ end
 # MEDIUM
 
 # Define a method that returns an array of letters that do not occur in the method's argument.
+
 def missing_letters(string)
-  alpha = ('a'..'z').to_a
+
   result = []
 
-  i = 0
-  while i < alpha.length
-    if string.downcase.include?(alpha[i]) == false && result.include?(alpha[i]) == false
-      result << alpha[i]
-    end
-    i += 1
-  end
+  ("a".."z").each do |ch|
+    result << ch if string.downcase.include?(ch) == false
 
+  end
   result
 end
 
