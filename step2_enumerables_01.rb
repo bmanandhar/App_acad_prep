@@ -2,12 +2,21 @@
 
 # Define a method that returns an array of only the even numbers in its argument (an array of integers).
 def get_evens(arr)
+
+  arr.select {|x| x.even?}
+end
+#method-2
+def get_evens(arr)
+
+  arr.reject {|x| x.odd?}
+end
+
+def array_sum_with_index(arr)
   array = []
-  arr.each do |x|
-    array << x if x.even?
-  end
+  arr.each_index {|n, i| array << n*i}
   array
 end
+
 
 # Define a method that returns a new array of all the elements in its argument doubled. This method should *not* modify the original array.
 def calculate_doubles(arr)
@@ -29,28 +38,14 @@ end
 # array_sum_with_index([2, 9, 7]) => 23 because (2 * 0) + (9 * 1) + (7 * 2) = 0 + 9 + 14 = 23
 def array_sum_with_index(arr)
   sum = 0
-  i = 0
-  while i < arr.length
-    sum += arr[i]*i
-
-    i += 1
-  end
-
+  arr.each_with_index {|n, i| sum += n*i}
   sum
-end
-#Method-2 using enumerable
-
-def array_sum_with_index(arr)
-
-  result = []
-  arr.each_index {|i|  result << arr[i]*i}
-  result
 end
 
 # MEDIUM
 
 # Given an array of bids and an actual retail price, return the bid closest to the actual retail price without going over that price. Assume there is always at least one bid below the retail price.
-#method-1 'each' method
+
 def price_is_right(bids, actual_retail_price)
   diff = actual_retail_price
   best_bid = nil
@@ -59,26 +54,24 @@ def price_is_right(bids, actual_retail_price)
     highest = actual_retail_price - bid
 
     if highest > 0 && highest <= diff
-      diff = highest
-      best_bid = bid
+      diff, best_bid = highest, bid
     end
   end
 
   best_bid
 end
-#method-2 while-loop
+
+###
 def price_is_right(bids, actual_retail_price)
 
-  bid = nil
-  diff1 = actual_retail_price
+  bid, diff1 = nil, actual_retail_price
 
   i = 0
   while i < bids.length
     diff = actual_retail_price - bids[i]
 
     if diff > 0 && diff <= diff1
-      bid = bids[i]
-      diff1 = diff
+      bid, diff1 = bids[i], diff
     end
 
     i += 1
@@ -86,9 +79,6 @@ def price_is_right(bids, actual_retail_price)
 
   bid
 end
-
-
-
 
 # Given an array of numbers, return an array of those numbers that have at least n factors (including 1 and the number itself as factors).
 # at_least_n_factors([1, 3, 10, 16], 5) => [16] because 16 has five factors (1, 2, 4, 8, 16) and the others have fewer than five factors.
@@ -102,12 +92,12 @@ def at_least_n_factors(numbers, n)
 
   arr
 end
-
+#helper
 def num_factors(number)
 
   arr = []
   (1..number).each do |n|
-    arr << n if number % n == 0
+    arr << n if (number % n).zero?
     end
 
   arr.length
