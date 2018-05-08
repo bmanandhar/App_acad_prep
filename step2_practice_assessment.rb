@@ -1,3 +1,4 @@
+
 # Maybe Zeroes
 
 # You are given an array of numbers, and a boolean.
@@ -10,24 +11,24 @@
 def maybe_zeroes(numbers, drop)
 # your codes goes here
   result = nil
+
   if drop
     result = helper(numbers)
 
   else
     result = numbers.reduce(:+)
-
   end
 
   result
 end
-
 #helper
+
 def helper(arr)
   array = []
   arr.each {|n| array << n.to_s.chars.reject {|z| z == '0'}.join('').to_i}
-
-  array.reduce(:+)
+    array.reduce(:+)
 end
+
 
 puts "-------Maybe Zeroes-------"
 
@@ -46,26 +47,17 @@ puts maybe_zeroes([43, 7, 98], false) == 148
 
 
 def swap_letters(sentence, letters)
-  # your code goes here
-  result = []
 
-  l1, l2= letters[0], letters[1]
-
-  sentence.split.each do |word|
-    temp = ""
-    word.chars.each do |ch|
-      if ch == l1
-        temp << l2
-      elsif ch.upcase == l1
-      elsif ch == l2
-        temp << l1
-      else temp << ch
-      end
-      end
-      result << temp
+  sentence.chars.each.with_index do |letter, idx|
+    if letter == letters.first || letter == letters.first.downcase || letter == letters.first.upcase
+      sentence[idx] = letters.last.downcase
+    elsif letter == letters.last || letter == letters.last.downcase || letter == letters.last.upcase
+      sentence[idx]  = letters.first.downcase
+    else
+      sentence[idx]
     end
-
-  result.join(" ")
+  end
+  p sentence
 
 end
 
@@ -74,7 +66,6 @@ puts swap_letters("I went to the dentist", ["n", "t"]) == "I wetn no nhe detnisn
 puts swap_letters("I went to the dentist", ["t", "n"]) == "I wetn no nhe detnisn"
 puts swap_letters("My name is Michael", ["a", "m"]) == "ay nmae is aichmel"
 puts swap_letters("My name is Michael", ["A", "m"]) == "ay nmae is aichmel"
-
 
 # Transpose
 
@@ -94,27 +85,19 @@ puts swap_letters("My name is Michael", ["A", "m"]) == "ay nmae is aichmel"
 def transpose(matrix)
 	#
 	# your code goes here
-
-
-  results = []
+  result = [] #empty arr as accumulator
   i = 0
-
-  while i < matrix.length
+  while i < matrix.length #iterates trhough matrix
     array = []
-
-    matrix.each do |sub_m|
-
-      array << sub_m[i]
+    matrix.each do |sub_matrix| #iterates through sub_matrix
+      array << sub_matrix[i] #sends elements to array
     end
-    results << array
-
+    result << array #sends new sub-array to result
     i += 1
   end
-  results
+
+  result
 end
-
-
-
 
 puts "-------Transpose-------"
 matrix_one = [[1, 2],
@@ -134,11 +117,9 @@ puts transpose(matrix_two) == [[1, 2, 3],
 puts transpose(matrix_three) == [[1, 5, 9, 13],
  																	 [2, 6, 10, 14],
 																	 [3, 7, 11, 15],
-																	 [4, 8, 12, 16]]
-
+                                   [4, 8, 12, 16]]
 
 # Calculater
-
 # You are given a hash with letters as keys and mathematical operators as values,
 # an input array of numbers and letters, and a starting value
 
@@ -154,13 +135,23 @@ puts transpose(matrix_three) == [[1, 5, 9, 13],
 
 # calculater(hash, input, start) = 5 (remember integer division!)
 
-
 def calculater(hash, input, start)
-  # your code goes here
+  result = [start]
 
+  i = 0
+  while i < input.length
+    operator = input[i]
+    if hash.keys.include?(operator)
+      result << input[i + 1]
+      result = [result.reduce(hash[operator])]
+      i += 2
+    else i += 2
+    end
+  end
 
-
+  result[0]
 end
+
 
 puts "---------Calculater---------"
 
