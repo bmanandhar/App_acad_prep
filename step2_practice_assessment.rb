@@ -11,14 +11,11 @@
 def maybe_zeroes(numbers, drop)
 # your codes goes here
   result = nil
-
   if drop
     result = helper(numbers)
-
   else
     result = numbers.reduce(:+)
   end
-
   result
 end
 #helper
@@ -47,18 +44,24 @@ puts maybe_zeroes([43, 7, 98], false) == 148
 
 
 def swap_letters(sentence, letters)
+  # your code goes here
+  result = []
 
-  sentence.chars.each.with_index do |letter, idx|
-    if letter == letters.first || letter == letters.first.downcase || letter == letters.first.upcase
-      sentence[idx] = letters.last.downcase
-    elsif letter == letters.last || letter == letters.last.downcase || letter == letters.last.upcase
-      sentence[idx]  = letters.first.downcase
-    else
-      sentence[idx]
+  l1, l2= letters[0], letters[1]
+  sentence.split.each do |word|
+    temp = ""
+    word.chars.each do |ch|
+      if ch == l1 || ch == l1.downcase
+        ch = l2
+      elsif ch == l2 || ch.downcase == l2
+        ch = l1.downcase
+      end
+    temp << ch
     end
+    result << temp
   end
-  p sentence
 
+  result.join(" ")
 end
 
 puts "-------Letter Swap--------"
