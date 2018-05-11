@@ -35,10 +35,10 @@ def vigenere_cipher(string, key_sequence)
     end
     i += key_sequence.length
   end
+
   result
-
 end
-
+#helper
 def alpha_shift(ch, num)
 	alphabet = ("a".."z").to_a
   #
@@ -49,9 +49,9 @@ def alpha_shift(ch, num)
   if new_idx > 25
     new_idx -= 26
   end
+
     new_ch = alphabet[new_idx]
 end
-
 
 puts "----Vigenere cipher----"
 puts vigenere_cipher("toerrishuman", [1]) == "upfssjtivnbo"
