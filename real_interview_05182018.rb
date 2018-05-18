@@ -1,12 +1,12 @@
 #05/18/2018 friday, 02:30 PM, interviewer: Paul
-#solo# 01
+#01 (solo)
 # all_unique
 def all_unique(arr)
 
   result = []
 
   arr.each.with_index do |x, i|
-    subarr = arr[0...i] + arr[i + 1.. -1]
+    subarr = arr[0...i] + arr[i + 1..-1]
 
     if result.include?(x) == false && subarr.include?(x) == false
       result << x
@@ -18,7 +18,12 @@ end
 p "== == def all_unique(arr) == =="
 p all_unique([1,2,7,1,8,9,10,7,18,2,1]) => [8, 9, 10, 18]
 
-#solo# 02
+#
+#02 (pair-programming), pascal-triangle
+#
+
+
+#03 (solo)
 # next_prime in the array
 def next_prime?(arr)
   result = []
@@ -42,14 +47,7 @@ def prime?(n)
   arr.length == 2
 end
 
-
-#
-#02, pair-programming, pascal-triangle
-#
-
-
-
-#helper-3
+#helper-2
 def prime_next(x)
   i = x + 1
   while !prime?(i)
