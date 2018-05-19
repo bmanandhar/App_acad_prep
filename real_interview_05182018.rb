@@ -58,4 +58,4 @@ end
 p "=====next prme===="
 p next_prime?([3, 7, 17]) => [5, 11, 19]
 p next_prime?([4, 8, 18]) => []
-p next_prime?([3, 20, 17]) => [5, 19
+p next_prime?([3, 20, 17]) => [5, 19]
