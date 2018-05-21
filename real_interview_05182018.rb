@@ -44,33 +44,38 @@ p all_unique([1,2,7,1,8,9,10,7,18,2,1]) => [8, 9, 10, 18]
 # pascals_triangle(2) => [[1], [1,1], [1,2,1]]
 # pascals_triangle(4) => [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
 
+
 def pascals_triangle(depth)
   # all arrays have 1's in common as the first and last items, except array at (0)
-  # do not think like you are working to derive solution/s to an algebraic equation
+  # do not think like you are working to derive solution/s of an algebraic equation
   # if you look at the test cases (especially, the case when depth is 4),
-  # it's clear that each array is derrived from the items of previous array
-  # each item is the sum of items at indices (i - 1) and and (i),
+  # it's clear that each array is derrived from the items of the previous array
+  # each item is the sum of items at indices (i - 1) and (i),
   # except the items at indices (0) and (-1)
-  # hence we can imagine of a logic that will add 1 as items at (0) and (-1) always
+  # imagine of a logic that will add 1 as items at (0) and (-1) to all the rows(arrays)
   triangle = [[1]]
-  while triangle.length <= depth
-    triangle << next_row(triangle.last)
-  end
+    # until triangle.length > depth # same as below
+    while triangle.length <= depth # same as above or below
+    # while triangle.length <= depth # same as above
+
+      triangle << next_row(triangle[-1])
+    end
+
   triangle
 end
 #helper
 def next_row(arr)
   temp = [1]
-  i = 0
+  i = 1
   while i < arr.length
     temp << arr[i - 1] + arr[i]
-  i += 1
+    i += 1
   end
 
   temp << 1
 end
 p pascals_triangle(0) => [[1]]
-p pascals_triangle(2) => [[1], [1,1], [1,2,1]]
+p pascals_triangle(1) => [[1], [1,1], [1,2,1]]
 p pascals_triangle(4) => [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
 
 #03 (solo)
