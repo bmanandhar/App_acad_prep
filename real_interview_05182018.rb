@@ -56,8 +56,6 @@ def pascals_triangle(depth)
   triangle = [[1]]
     # until triangle.length > depth # same as below
     while triangle.length <= depth # same as above or below
-    # while triangle.length <= depth # same as above
-
       triangle << next_row(triangle[-1])
     end
 
